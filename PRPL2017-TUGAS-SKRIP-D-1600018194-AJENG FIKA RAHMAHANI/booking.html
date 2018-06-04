@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hotel</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript">function validasi_input(form){
+	if(form.nohp.value !=""){
+		var x = (form.nohp.value);
+		var status = true;
+		var list = new Array ("0","1","2","3","4","5","6","7","8","9");
+		for(i=0; i<=x.length-1; i++)
+		{
+			if (x[i] in list ) cek = true;
+			else cek = false;
+			status = status && cek; 
+		} 
+		if (status == false)
+		{
+			alert("Nomor HP harus angka!");
+			form.nohp.focus();
+			return false;
+		}
+	}
+	return (true);
+}
+</script>
+  <script>
+  $( function() {
+    var dateFormat = "yy/mm/dd",
+      from = $( "#from" )
+        .datepicker({
+          defaultDate: "+1w",
+          changeMonth: true,
+          numberOfMonths: 1
+        })
+        .on( "change", function() {
+          to.datepicker( "option", "minDate", getDate( this ) );
+        }),
+      to = $( "#to" ).datepicker({
+        defaultDate: "+1w",
+        changeMonth: true,
+        numberOfMonths: 1
+      })
+      .on( "change", function() {
+        from.datepicker( "option", "maxDate", getDate( this ) );
+      });
+ 
+    function getDate( element ) {
+      var date;
+      try {
+        date = $.datepicker.parseDate( dateFormat, element.value );
+      } catch( error ) {
+        date = null;
+      }
+ 
+      return date;
+    }
+  } );
+  </script>
+
+
+</head>
+
+<body>
+	<div class="row">
+		<ul class="main-nav">
+			<li><a href="index.html" >HOME</a></li>
+			<li><a href="about.html">ABOUT US</a></li>
+			<li><a href="rooms.html">ROOMS</a></li>
+			<li><a href="promo.html">PROMO</a></li>
+			<li><a href="gallery.html">GALLERY</a></li>
+			<li><a href="booking.html">BOOKING</a></li>
+
+		</ul>
+
+	</div>
+	<br><br><br><br>
+ <div class="form">
+	 <form action="simpan_customer.php" id="form-booking" method="post" onSubmit="return validasi()">
+	 		<h1><center>BOOKING</center></h1>
+			<table>
+				<tr>
+					<td><font color="white">Nama *</font></td>
+					<td> : </td>
+					<td><input type="text" name="nama" title="Nama Lengkap sesuai dengan Kartu Identitas" required></td>
+				</tr>
+				<tr>
+					<td><font color="white">Alamat *</td>
+					<td> : </td>
+					<td><input type="text" name="alamat" title="Alamat sesuai dengan Kartu Identitas" required></td>
+				</tr>
+				<tr>
+					<td><font color="white">Email *</td>
+					<td> : </td>
+					<td><input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="email" title="Email aktif" required></td>
+				</tr>
+				<tr>
+					<td><font color="white">Jenis Kelamin *</td>
+					<td> : </td>
+					<td><select name="jeniskelamin" required="">
+							<option value="-">Pilih</option>
+							<option value="Laki-laki">Laki-laki</option>
+							<option value="Perempuan">Perempuan</option>
+				</tr>
+				<tr>
+					<td><font color="white">Nomor Hp *</td>
+					<td> : </td>
+					<td><input type="tel" pattern="^\d{12}$" name="nohp" title="Hanya angka saja" required=""></td>
+				</tr>
+				<tr>
+					<td><font color="white">Tanggal Check in *</td>
+					<td> : </td>
+					<td><input type="date" name="check_in" required=""></td>
+				</tr>
+				<tr>
+					<td><font color="white">Tanggal Check Out *</td>
+					<td> : </td>
+					<td><input type="date" name="check_out" required=""></td>
+				</tr>
+
+				<tr>
+					<td><font color="white">Pilih Tipe Kamar *</td>
+					<td> : </td>
+					<td><select name="room" required="">
+							<option value="DELUXE">DELUXE</option>
+							<option value="PREMIUM DELUXE BALCONY">PREMIUM DELUXE BALCONY</option>
+							<option value="GRAND DELUXE">GRAND DELUXE</option>
+							<option value="PREMIUM GRAND DELUXE">PREMIUM GRAND DELUXE</option>
+							<option value="EXECUTIVE POOL">EXECUTIVE POOL</option>
+							<option value="JUNIOR SUITE">JUNIOR SUITE</option>
+							<option value="EXECUTIVE SUITE">EXECUTIVE SUITE</option>
+							<option value="PRESIDENT SUITE">PRESIDENT SUITE</option>
+				</tr>
+
+
+
+				<tr>
+					<td colspan="3"></td>
+					<td><input type="submit" value="Submit"></td>
+					<td><input type="reset" value="Reset"></td>
+				</tr>
+
+				<br>
+				<p><font color="white"> * = wajib disii</p>
+
+			
+			</table>
+		</form>
+	</div>
+
+
+
+</html>
